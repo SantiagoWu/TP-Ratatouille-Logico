@@ -1,12 +1,15 @@
+%rata(Nombre,Restaurante).
 rata(remy, gusteaus).
 rata(emile, bar).
 rata(django, pizzeria).
 
+%cocina(Nombre,Plato,Experiencia).
 cocina(linguini, ratatouille, 3).
 cocina(linguini, sopa, 5). 
 cocina(colette, salmonAsado, 9).
 cocina(horst, ensaladaRusa, 8).
 
+%trabajaEn(Restaurante,Nombre).
 trabajaEn(gusteaus, linguini).
 trabajaEn(gusteaus, colette).
 trabajaEn(gusteaus, skinner).
@@ -25,12 +28,12 @@ chef(Empleado,Restaurante):-
 %PUNTO 3
 chefcito(Rata):-
 	rata(Rata,Restaurante),
-	Restaurante=gusteaus.
-	
+	trabajaEn(Restaurante,linguini).
+
 %TAMBIEN PODRIA HABER SIDO
 %chefcito(Rata):-
 %	rata(Rata,Restaurante),
-%	trabajaEn(Restaurante,linguini).
+%	Restaurante=gusteaus.
 
 %PUNTO 4
 cocinaBien(Alguien,Plato):-
@@ -38,7 +41,6 @@ cocinaBien(Alguien,Plato):-
 	Experiencia>7.
 
 cocinaBien(remy,_).
-
 
 %PUNTO 5
 encargadoDe(Alguien,Plato,Restaurante):-
@@ -82,3 +84,12 @@ saludable(Plato):-
 grupo(carrizo-rizzato-wu).
 
 saludable(NombGrupo):-grupo(NombGrupo).
+
+%PUNTO 7
+
+criticaPositiva(Restaurante,antonEgo):-
+	inspeccionSatisfactoria(Restaurante),
+	especialistasEnRatatouille(Restaurante).
+
+especialistasEnRatatouille(Restaurante):-
+	forall(trabajaEn(Alguien,Restaurante),cocinaBien(Alguien,ratatouille)).
