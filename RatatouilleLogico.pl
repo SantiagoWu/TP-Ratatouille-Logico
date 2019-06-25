@@ -39,8 +39,11 @@ cocinaBien(Alguien,Plato):-
 
 cocinaBien(remy,_).
 
+
 %PUNTO 5
 encargadoDe(Alguien,Plato,Restaurante):-
 	cocina(Alguien,Plato,Exp),
 	trabajaEn(Restaurante,Alguien),
-	forall(cocina(AlguienMas,Plato,OtraExp),(Alguien\=AlguienMas,(trabajaEn(Restaurante,AlguienMas),Exp>OtraExp))).
+	forall((cocina(AlguienMas,Plato,Exp2),trabajaEn(Restaurante,AlguienMas),Alguien\=AlguienMas),Exp>Exp2).
+
+%forall(condiciones para quien, que debe cumplir).
