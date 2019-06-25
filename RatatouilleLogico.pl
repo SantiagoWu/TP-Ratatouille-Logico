@@ -93,3 +93,10 @@ criticaPositiva(Restaurante,antonEgo):-
 
 especialistasEnRatatouille(Restaurante):-
 	forall(trabajaEn(Alguien,Restaurante),cocinaBien(Alguien,ratatouille)).
+
+criticaPositiva(Restaurante,cristophe):-
+	inspeccionSatisfactoria(Restaurante),
+	findall(Nombre, chef(Alguien,Restaurante), ListaNombres),
+	length(ListaNombres, Cant),
+	Cant>3.
+
