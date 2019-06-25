@@ -78,3 +78,7 @@ saludable(Plato):-
 saludable(Plato):-
 	plato(Plato, postre(Calorias)),
 	Calorias<75.
+
+grupo(carrizo-rizzato-wu).
+
+saludable(NombGrupo):-grupo(NombGrupo).
